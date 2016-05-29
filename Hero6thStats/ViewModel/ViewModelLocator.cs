@@ -32,6 +32,7 @@ namespace Hero6thStats.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
+                SimpleIoc.Default.Register<StatModel>();
             }
             else
             {
@@ -39,6 +40,7 @@ namespace Hero6thStats.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<StatModel>();
         }
 
         /// <summary>
@@ -55,6 +57,14 @@ namespace Hero6thStats.ViewModel
             }
         }
 
+        /// <summary>
+        /// Get Stat Property for my views
+        /// </summary>
+        public StatModel Stat
+        {
+            get { return ServiceLocator.Current.GetInstance<StatModel>(); }
+        }
+    
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
