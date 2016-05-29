@@ -7,6 +7,7 @@ namespace Hero6thStats.Model
 {
     public interface IDataService
     {
-        void GetData(Action<DataItem, Exception> callback);
+        void GetData(Action<Stats, Exception> callback);
+        Stats LoadDefaults();
     }
 }

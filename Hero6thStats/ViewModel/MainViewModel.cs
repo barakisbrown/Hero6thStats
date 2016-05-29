@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using Hero6thStats.Model;
 
 namespace Hero6thStats.ViewModel
@@ -11,7 +12,12 @@ namespace Hero6thStats.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+       
+
+
+
         private readonly IDataService _dataService;
+        private Stats _stats;
 
         /// <summary>
         /// The <see cref="WelcomeTitle" /> property's name.
@@ -37,6 +43,14 @@ namespace Hero6thStats.ViewModel
         }
 
         /// <summary>
+        /// Set the stats object so that I can manipulate the object and all objects that belong with it.
+        /// </summary>
+        public Stats Stats
+        {
+            get { return _stats;}
+            set { Set(ref _stats, value); }
+        }
+        /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IDataService dataService)
@@ -50,8 +64,8 @@ namespace Hero6thStats.ViewModel
                         // Report error here
                         return;
                     }
-
-                    WelcomeTitle = item.Title;
+                    _stats = item;
+                    WelcomeTitle = "Hero 6th Stat Maker";
                 });
         }
 
