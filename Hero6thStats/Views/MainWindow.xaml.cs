@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Hero6thStats.ViewModel;
 
-namespace Hero6thStats
+namespace Hero6thStats.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
