@@ -1,4 +1,6 @@
-﻿namespace Hero6thStats.Model
+﻿using System;
+
+namespace Hero6thStats.Model
 {
     using GalaSoft.MvvmLight;
     /// <summary>
@@ -18,7 +20,27 @@
             get { return _actualValue; }
             set
             {
-                SkillRoll = (value + 9)/5;
+                SkillRoll = value;
+                var result = (value - BaseValue);
+                
+                switch (Name)
+                {
+                    case "END":
+                        if (result%5 == 0)
+                        {
+                            Points = result/5;
+                        }
+                        break;
+                    case "STUN":
+                        if (result%2 == 0)
+                        {
+                            Points = result/2;
+                        }
+                        break;
+                    default:
+                        Points = result * _cost;
+                        break;
+                }                
                 Set("VALUE", ref _actualValue, value);
             }
         }
@@ -50,7 +72,29 @@
         public int SkillRoll
         {
             get { return _skillRoll; }
-            set { Set("SKILL",ref _skillRoll, value); }
+            set
+            {
+                switch (Name)
+                {
+                    case "STR":
+                    case "DEX":
+                    case "INT":
+                    case "EGO":
+                    case "CON":
+                    case "PRE":
+                    case "BODY":
+                    {
+                        _skillRoll = (value/5) + 9;
+                        break;
+                    }
+                    default:
+                    {
+                        _skillRoll = 0;
+                        break;
+                    }
+                }
+                Set("SKILL",ref _skillRoll, value);
+            }
         }
     }
 }

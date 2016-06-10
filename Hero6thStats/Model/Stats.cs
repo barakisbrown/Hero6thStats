@@ -131,5 +131,13 @@
             get { return _list[18]; }
             set { _list[18] = value; }
         }
+
+        public int getTotalPoints()
+        {
+            var total = 0;
+            for (int loop = 0; loop < 18; loop++)
+                total += _list[loop].Points;
+            return total;
+        }
     }
 }
